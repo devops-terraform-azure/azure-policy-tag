@@ -1,0 +1,58 @@
+{
+  "mode": "Indexed",
+  "policyRule": {
+    "if": {
+      "anyOf": [
+        {
+          "field": "[concat('tags[', parameters('tag_createdBy'), ']')]",
+          "exists": "false"
+        },
+        {
+          "field": "[concat('tags[', parameters('tag_team'), ']')]",
+          "exists": "false"
+        },
+        {
+          "field": "[concat('tags[', parameters('tag_tbd'), ']')]",
+          "exists": "false"
+        },
+        {
+          "field": "[concat('tags[', parameters('tag_application'), ']')]",
+          "exists": "false"
+        }
+      ]
+    },
+    "then": {
+      "effect": "deny"
+    }
+  },
+  "parameters": {
+    "tag_createdBy": {
+      "type": "String",
+      "metadata": {
+        "displayName": "created-by",
+        "description": "example: Gerasimos Alexiou"
+      }
+    },
+    "tag_team": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Team",
+        "description": "example: DevOps"
+      }
+    },
+    "tag_tbd": {
+      "type": "String",
+      "metadata": {
+        "displayName": "TBD",
+        "description": "example: (to be deleted) true or false"
+      }
+    },
+    "tag_application": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Application",
+        "description": "example: Grafana,Teamcity"
+      }
+    }
+  }
+}
